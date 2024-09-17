@@ -332,10 +332,11 @@ CREATE TABLE products (
     price        NUMBER(6, 2),
     supplier_id  INT,
     category_id  INT,
-    CONSTRAINT uc_name UNIQUE ( product_name ),
-    FOREIGN KEY ( supplier_id )
+    CONSTRAINT uc_name UNIQUE ( product_name,
+                                supplier_id ),
+    CONSTRAINT fk_suppliers FOREIGN KEY ( supplier_id )
         REFERENCES suppliers ( supplier_id ),
-    FOREIGN KEY ( category_id )
+    CONSTRAINT fk_category FOREIGN KEY ( category_id )
         REFERENCES categories ( category_id )
 );
 /* created successfully - the product name and ID should be unquie, the price, 
