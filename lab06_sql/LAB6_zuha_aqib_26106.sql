@@ -334,24 +334,46 @@ ORDER BY
 -- categories for each department. Greater than 10,000 classify as High, between 
 -- 5000-10000 as Medium, and less than 5000 as Low. This new column should be 
 -- called salary_category.
-SELECT ROUND(AVG(SALARY), 2) AS average_salary, DEPARTMENT_ID, DEPARTMENTS.DEPARTMENT_NAME,
-CASE WHEN AVG(SALARY) > 10000 THEN 'HIGH'
-WHEN AVG(SALARY) > 5000 THEN 'MEDIUM'
-WHEN AVG(SALARY)  <= 5000 THEN 'LOW'
-END SALARY_CATEGORY
-FROM EMPLOYEES INNER JOIN DEPARTMENTS USING (DEPARTMENT_ID)
-GROUP BY DEPARTMENT_ID, DEPARTMENTS.DEPARTMENT_NAME
-order by avg(salary) ASC, department_name ASC;
+SELECT
+    round(AVG(salary),
+          2) AS average_salary,
+    department_id,
+    departments.department_name,
+    CASE
+        WHEN AVG(salary) > 10000 THEN
+            'HIGH'
+        WHEN AVG(salary) > 5000  THEN
+            'MEDIUM'
+        WHEN AVG(salary) <= 5000 THEN
+            'LOW'
+    END      salary_category
+FROM
+         employees
+    INNER JOIN departments USING ( department_id )
+GROUP BY
+    department_id,
+    departments.department_name
+ORDER BY
+    AVG(salary) ASC,
+    department_name ASC;
 /* 11 departments */
 
--- Q14: 14. Modify employee information: (LiveSQL does not allow alteration of tables)
--- a. Update the record of Steven King in the employees table. Set the commission to 0.5
-UPDATE EMPLOYEES
-SET COMMISSION_PCT = 0.5
-WHERE FIRST_NAME = 'Steven' AND last_name = 'King';
+-- Q14: 14. Modify employee information: (LiveSQL does not allow alteration of 
+-- tables)
+-- a. Update the record of Steven King in the employees table. Set the commission 
+-- to 0.5
+UPDATE employees
+SET
+    commission_pct = 0.5
+WHERE
+        first_name = 'Steven'
+    AND last_name = 'King';
 /* 1 row updated successfully */
 
-SELECT * FROM EMPLOYEES;
+SELECT
+    *
+FROM
+    employees;
 /* updated successfully */
 
 -- b. Assume Alexandar Hunold has been fired. The employees or departments he was
@@ -381,14 +403,61 @@ WHERE
 /* 4 rows updated */
 
 -- c. Delete Alexandar Hunold’s information from the system.
-DELETE FROM EMPLOYEES
-WHERE FIRST_NAME = 'Alexander' AND last_name = 'Hunold';
+DELETE FROM employees
+WHERE
+        first_name = 'Alexander'
+    AND last_name = 'Hunold';
+    
+-- Date: 2nd October 2024
 
 -- Q15: For this part, you may use any of the SQL methods studied so far i.e. 
 -- subqueries, joins, group by, etc.
--- 15. The company intends to send out an appreciation email to all employees who have
--- served for more than 10 years. There is a special poster for each department that will be
--- designed by the marketing team and the email will be sent out from the department
--- manager’s email address. Write a query to retrieve the required information to
--- complete this task. Write clearly in comments justifying your choice of attributes to
--- project in the output
+
+-- 15. The company intends to send out an appreciation email to all employees 
+-- who have served for more than 10 years. There is a special poster for each 
+-- department that will be designed by the marketing team and the email will be 
+-- sent out from the department manager’s email address. Write a query to 
+-- retrieve the required information to complete this task. Write clearly in 
+-- comments justifying your choice of attributes to project in the output
+SELECT
+    concat(e.first_name,
+           concat(' ', e.last_name))                 AS employee_full_name,
+    e.email                                          AS employee_email,
+    d.department_name,
+    concat(m.first_name,
+           concat(' ', m.last_name))                 AS manager_full_name,
+    m.email                                          AS manager_email,
+    trunc(months_between(sysdate, e.hire_date) / 12) AS years_served
+FROM
+         employees e
+    INNER JOIN departments d USING ( department_id )
+    INNER JOIN employees   m ON m.employee_id = e.manager_id
+WHERE
+    trunc(months_between(sysdate, e.hire_date) / 12) >= 10;
+/* 105 employees */
+
+-- Q16: 16. The CEO would like to view a complete department-wise summary including,
+-- average/min/max salaries, number of employees, manager name, latest hiring date.
+-- Generate a report to provide relevant information for each department. 
+SELECT
+    departments.department_name,
+    round(AVG(employees.salary),
+          2)                          AS average_salary,
+    MIN(employees.salary)             AS minimum_salary,
+    MAX(employees.salary)             AS maximum_salary,
+    COUNT(employees.employee_id)      AS no_of_employees,
+    concat(e2.first_name,
+           concat(' ', e2.last_name)) AS manager_name,
+    MAX(employees.hire_date)          AS latest_hiring_date
+FROM
+    departments
+    LEFT JOIN employees USING ( department_id )
+    LEFT JOIN employees e2 ON departments.manager_id = e2.employee_id
+GROUP BY
+    departments.department_name,
+    e2.first_name,
+    e2.last_name
+ORDER BY
+    AVG(employees.salary) ASC,
+    departments.department_name ASC;
+/* 27 departments displayed, in which 11 are not null */
