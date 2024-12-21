@@ -1,0 +1,44 @@
+﻿OrderDate,Region,Rep,Item,Units,Unit Cost,Total
+1/6/2019,East,Jones,Pencil,95.00,1.99,189.05
+1/23/2019,Central,Kivell,Binder,50.00,19.99,999.50
+2/9/2019,Central,Jardine,Pencil,36.00,4.99,179.64
+2/26/2019,Central,Gill,Pen,27.00,19.99,539.73
+3/15/2019,West,Sorvino,Pencil,56.00,2.99,167.44
+4/1/2019,East,Jones,Binder,60.00,4.99,299.40
+4/18/2019,Central,Andrews,Pencil,75.00,1.99,149.25
+5/5/2019,Central,Jardine,Pencil,90.00,4.99,449.10
+5/22/2019,West,Thompson,Pencil,32.00,1.99,63.68
+6/8/2019,East,Jones,Binder,60.00,8.99,539.40
+6/25/2019,Central,Morgan,Pencil,90.00,4.99,449.10
+7/12/2019,East,Howard,Binder,29.00,1.99,57.71
+7/29/2019,East,Parent,Binder,81.00,19.99,1619.19
+8/15/2019,East,Jones,Pencil,35.00,4.99,174.65
+9/1/2019,Central,Smith,Desk,2.00,125.00,250.00
+9/18/2019,East,Jones,Pen Set,16.00,15.99,255.84
+10/5/2019,Central,Morgan,Binder,28.00,8.99,251.72
+10/22/2019,East,Jones,Pen,64.00,8.99,575.36
+11/8/2019,East,Parent,Pen,15.00,19.99,299.85
+11/25/2019,Central,Kivell,Pen Set,96.00,4.99,479.04
+12/12/2019,Central,Smith,Pencil,67.00,1.29,86.43
+12/29/2019,East,Parent,Pen Set,74.00,15.99,1183.26
+1/15/2020,Central,Gill,Binder,46.00,8.99,413.54
+2/1/2020,Central,Smith,Binder,87.00,15.00,1305.00
+2/18/2020,East,Jones,Binder,4.00,4.99,19.96
+3/7/2020,West,Sorvino,Binder,7.00,19.99,139.93
+3/24/2020,Central,Jardine,Pen Set,50.00,4.99,249.50
+4/10/2020,Central,Andrews,Pencil,66.00,1.99,131.34
+4/27/2020,East,Howard,Pen,96.00,4.99,479.04
+5/14/2020,Central,Gill,Pencil,53.00,1.29,68.37
+5/31/2020,Central,Gill,Binder,80.00,8.99,719.20
+6/17/2020,Central,Kivell,Desk,5.00,125.00,625.00
+7/4/2020,East,Jones,Pen Set,62.00,4.99,309.38
+7/21/2020,Central,Morgan,Pen Set,55.00,12.49,686.95
+8/7/2020,Central,Kivell,Pen Set,42.00,23.95,1005.90
+8/24/2020,West,Sorvino,Desk,3.00,275.00,825.00
+9/10/2020,Central,Gill,Pencil,7.00,1.29,9.03
+9/27/2020,West,Sorvino,Pen,76.00,1.99,151.24
+10/14/2020,West,Thompson,Binder,57.00,19.99,1139.43
+10/31/2020,Central,Andrews,Pencil,14.00,1.29,18.06
+11/17/2020,Central,Jardine,Binder,11.00,4.99,54.89
+12/4/2020,Central,Jardine,Binder,94.00,19.99,1879.06
+12/21/2020,Central,Andrews,Binder,28.00,4.99,139.72
